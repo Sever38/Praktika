@@ -1,0 +1,414 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище prktModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="InstalledSoftware">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Инвентарный_Номер_ПК" Type="int" />
+          <Property Name="Наименование_Продукта" Type="int" />
+          <Property Name="Дата_Установки" Type="datetime2" Precision="7" />
+        </EntityType>
+        <EntityType Name="PC">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Название" Type="nvarchar" MaxLength="50" />
+          <Property Name="Тип_Устройства" Type="int" />
+        </EntityType>
+        <EntityType Name="Software">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Наименование_Продукта" Type="nvarchar" MaxLength="50" />
+          <Property Name="Тип_ПО" Type="int" />
+          <Property Name="Тип_распространения" Type="int" />
+          <Property Name="Количество_Лицензий" Type="int" />
+          <Property Name="Остаток_Лицензий" Type="int" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="ТИП_ПО">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Название" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="ТИП_РАСПРОСТРАНЕНИЯ">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Название" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="ТИП_УСТРОЙСТВА">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Название" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_InstalledSoftware_PC">
+          <End Role="PC" Type="Self.PC" Multiplicity="0..1" />
+          <End Role="InstalledSoftware" Type="Self.InstalledSoftware" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PC">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="InstalledSoftware">
+              <PropertyRef Name="Инвентарный_Номер_ПК" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InstalledSoftware_Software">
+          <End Role="Software" Type="Self.Software" Multiplicity="0..1" />
+          <End Role="InstalledSoftware" Type="Self.InstalledSoftware" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Software">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="InstalledSoftware">
+              <PropertyRef Name="Наименование_Продукта" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PC_ТИП_УСТРОЙСТВА">
+          <End Role="ТИП_УСТРОЙСТВА" Type="Self.ТИП_УСТРОЙСТВА" Multiplicity="0..1" />
+          <End Role="PC" Type="Self.PC" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ТИП_УСТРОЙСТВА">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="PC">
+              <PropertyRef Name="Тип_Устройства" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Software_ТИП_ПО">
+          <End Role="ТИП_ПО" Type="Self.ТИП_ПО" Multiplicity="0..1" />
+          <End Role="Software" Type="Self.Software" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ТИП_ПО">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Software">
+              <PropertyRef Name="Тип_ПО" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Software_ТИП_РАСПРОСТРАНЕНИЯ">
+          <End Role="ТИП_РАСПРОСТРАНЕНИЯ" Type="Self.ТИП_РАСПРОСТРАНЕНИЯ" Multiplicity="0..1" />
+          <End Role="Software" Type="Self.Software" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ТИП_РАСПРОСТРАНЕНИЯ">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Software">
+              <PropertyRef Name="Тип_распространения" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище prktModelContainer">
+          <EntitySet Name="InstalledSoftware" EntityType="Self.InstalledSoftware" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PC" EntityType="Self.PC" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Software" EntityType="Self.Software" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ТИП_ПО" EntityType="Self.ТИП_ПО" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ТИП_РАСПРОСТРАНЕНИЯ" EntityType="Self.ТИП_РАСПРОСТРАНЕНИЯ" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ТИП_УСТРОЙСТВА" EntityType="Self.ТИП_УСТРОЙСТВА" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_InstalledSoftware_PC" Association="Self.FK_InstalledSoftware_PC">
+            <End Role="PC" EntitySet="PC" />
+            <End Role="InstalledSoftware" EntitySet="InstalledSoftware" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InstalledSoftware_Software" Association="Self.FK_InstalledSoftware_Software">
+            <End Role="Software" EntitySet="Software" />
+            <End Role="InstalledSoftware" EntitySet="InstalledSoftware" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PC_ТИП_УСТРОЙСТВА" Association="Self.FK_PC_ТИП_УСТРОЙСТВА">
+            <End Role="ТИП_УСТРОЙСТВА" EntitySet="ТИП_УСТРОЙСТВА" />
+            <End Role="PC" EntitySet="PC" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Software_ТИП_ПО" Association="Self.FK_Software_ТИП_ПО">
+            <End Role="ТИП_ПО" EntitySet="ТИП_ПО" />
+            <End Role="Software" EntitySet="Software" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Software_ТИП_РАСПРОСТРАНЕНИЯ" Association="Self.FK_Software_ТИП_РАСПРОСТРАНЕНИЯ">
+            <End Role="ТИП_РАСПРОСТРАНЕНИЯ" EntitySet="ТИП_РАСПРОСТРАНЕНИЯ" />
+            <End Role="Software" EntitySet="Software" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="prktModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="InstalledSoftware">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Инвентарный_Номер_ПК" Type="Int32" />
+          <Property Name="Наименование_Продукта" Type="Int32" />
+          <Property Name="Дата_Установки" Type="DateTime" Precision="7" />
+          <NavigationProperty Name="PC" Relationship="Self.FK_InstalledSoftware_PC" FromRole="InstalledSoftware" ToRole="PC" />
+          <NavigationProperty Name="Software" Relationship="Self.FK_InstalledSoftware_Software" FromRole="InstalledSoftware" ToRole="Software" />
+        </EntityType>
+        <EntityType Name="PC">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Название" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Тип_Устройства" Type="Int32" />
+          <NavigationProperty Name="InstalledSoftware" Relationship="Self.FK_InstalledSoftware_PC" FromRole="PC" ToRole="InstalledSoftware" />
+          <NavigationProperty Name="ТИП_УСТРОЙСТВА1" Relationship="Self.FK_PC_ТИП_УСТРОЙСТВА" FromRole="PC" ToRole="ТИП_УСТРОЙСТВА" />
+        </EntityType>
+        <EntityType Name="Software">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Наименование_Продукта" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Тип_ПО" Type="Int32" />
+          <Property Name="Тип_распространения" Type="Int32" />
+          <Property Name="Количество_Лицензий" Type="Int32" />
+          <Property Name="Остаток_Лицензий" Type="Int32" />
+          <NavigationProperty Name="InstalledSoftware" Relationship="Self.FK_InstalledSoftware_Software" FromRole="Software" ToRole="InstalledSoftware" />
+          <NavigationProperty Name="ТИП_ПО1" Relationship="Self.FK_Software_ТИП_ПО" FromRole="Software" ToRole="ТИП_ПО" />
+          <NavigationProperty Name="ТИП_РАСПРОСТРАНЕНИЯ1" Relationship="Self.FK_Software_ТИП_РАСПРОСТРАНЕНИЯ" FromRole="Software" ToRole="ТИП_РАСПРОСТРАНЕНИЯ" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="ТИП_ПО">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Название" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Software" Relationship="Self.FK_Software_ТИП_ПО" FromRole="ТИП_ПО" ToRole="Software" />
+        </EntityType>
+        <EntityType Name="ТИП_РАСПРОСТРАНЕНИЯ">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Название" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Software" Relationship="Self.FK_Software_ТИП_РАСПРОСТРАНЕНИЯ" FromRole="ТИП_РАСПРОСТРАНЕНИЯ" ToRole="Software" />
+        </EntityType>
+        <EntityType Name="ТИП_УСТРОЙСТВА">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Название" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="PC" Relationship="Self.FK_PC_ТИП_УСТРОЙСТВА" FromRole="ТИП_УСТРОЙСТВА" ToRole="PC" />
+        </EntityType>
+        <Association Name="FK_InstalledSoftware_PC">
+          <End Role="PC" Type="Self.PC" Multiplicity="0..1" />
+          <End Role="InstalledSoftware" Type="Self.InstalledSoftware" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PC">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="InstalledSoftware">
+              <PropertyRef Name="Инвентарный_Номер_ПК" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InstalledSoftware_Software">
+          <End Role="Software" Type="Self.Software" Multiplicity="0..1" />
+          <End Role="InstalledSoftware" Type="Self.InstalledSoftware" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Software">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="InstalledSoftware">
+              <PropertyRef Name="Наименование_Продукта" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PC_ТИП_УСТРОЙСТВА">
+          <End Role="ТИП_УСТРОЙСТВА" Type="Self.ТИП_УСТРОЙСТВА" Multiplicity="0..1" />
+          <End Role="PC" Type="Self.PC" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ТИП_УСТРОЙСТВА">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="PC">
+              <PropertyRef Name="Тип_Устройства" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Software_ТИП_ПО">
+          <End Role="ТИП_ПО" Type="Self.ТИП_ПО" Multiplicity="0..1" />
+          <End Role="Software" Type="Self.Software" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ТИП_ПО">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Software">
+              <PropertyRef Name="Тип_ПО" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Software_ТИП_РАСПРОСТРАНЕНИЯ">
+          <End Role="ТИП_РАСПРОСТРАНЕНИЯ" Type="Self.ТИП_РАСПРОСТРАНЕНИЯ" Multiplicity="0..1" />
+          <End Role="Software" Type="Self.Software" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ТИП_РАСПРОСТРАНЕНИЯ">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Software">
+              <PropertyRef Name="Тип_распространения" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="prktEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="InstalledSoftware" EntityType="Self.InstalledSoftware" />
+          <EntitySet Name="PC" EntityType="Self.PC" />
+          <EntitySet Name="Software" EntityType="Self.Software" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="ТИП_ПО" EntityType="Self.ТИП_ПО" />
+          <EntitySet Name="ТИП_РАСПРОСТРАНЕНИЯ" EntityType="Self.ТИП_РАСПРОСТРАНЕНИЯ" />
+          <EntitySet Name="ТИП_УСТРОЙСТВА" EntityType="Self.ТИП_УСТРОЙСТВА" />
+          <AssociationSet Name="FK_InstalledSoftware_PC" Association="Self.FK_InstalledSoftware_PC">
+            <End Role="PC" EntitySet="PC" />
+            <End Role="InstalledSoftware" EntitySet="InstalledSoftware" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InstalledSoftware_Software" Association="Self.FK_InstalledSoftware_Software">
+            <End Role="Software" EntitySet="Software" />
+            <End Role="InstalledSoftware" EntitySet="InstalledSoftware" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PC_ТИП_УСТРОЙСТВА" Association="Self.FK_PC_ТИП_УСТРОЙСТВА">
+            <End Role="ТИП_УСТРОЙСТВА" EntitySet="ТИП_УСТРОЙСТВА" />
+            <End Role="PC" EntitySet="PC" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Software_ТИП_ПО" Association="Self.FK_Software_ТИП_ПО">
+            <End Role="ТИП_ПО" EntitySet="ТИП_ПО" />
+            <End Role="Software" EntitySet="Software" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Software_ТИП_РАСПРОСТРАНЕНИЯ" Association="Self.FK_Software_ТИП_РАСПРОСТРАНЕНИЯ">
+            <End Role="ТИП_РАСПРОСТРАНЕНИЯ" EntitySet="ТИП_РАСПРОСТРАНЕНИЯ" />
+            <End Role="Software" EntitySet="Software" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище prktModelContainer" CdmEntityContainer="prktEntities">
+          <EntitySetMapping Name="InstalledSoftware">
+            <EntityTypeMapping TypeName="prktModel.InstalledSoftware">
+              <MappingFragment StoreEntitySet="InstalledSoftware">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Инвентарный_Номер_ПК" ColumnName="Инвентарный_Номер_ПК" />
+                <ScalarProperty Name="Наименование_Продукта" ColumnName="Наименование_Продукта" />
+                <ScalarProperty Name="Дата_Установки" ColumnName="Дата_Установки" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PC">
+            <EntityTypeMapping TypeName="prktModel.PC">
+              <MappingFragment StoreEntitySet="PC">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Название" ColumnName="Название" />
+                <ScalarProperty Name="Тип_Устройства" ColumnName="Тип_Устройства" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Software">
+            <EntityTypeMapping TypeName="prktModel.Software">
+              <MappingFragment StoreEntitySet="Software">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Наименование_Продукта" ColumnName="Наименование_Продукта" />
+                <ScalarProperty Name="Тип_ПО" ColumnName="Тип_ПО" />
+                <ScalarProperty Name="Тип_распространения" ColumnName="Тип_распространения" />
+                <ScalarProperty Name="Количество_Лицензий" ColumnName="Количество_Лицензий" />
+                <ScalarProperty Name="Остаток_Лицензий" ColumnName="Остаток_Лицензий" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="prktModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ТИП_ПО">
+            <EntityTypeMapping TypeName="prktModel.ТИП_ПО">
+              <MappingFragment StoreEntitySet="ТИП_ПО">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Название" ColumnName="Название" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ТИП_РАСПРОСТРАНЕНИЯ">
+            <EntityTypeMapping TypeName="prktModel.ТИП_РАСПРОСТРАНЕНИЯ">
+              <MappingFragment StoreEntitySet="ТИП_РАСПРОСТРАНЕНИЯ">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Название" ColumnName="Название" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ТИП_УСТРОЙСТВА">
+            <EntityTypeMapping TypeName="prktModel.ТИП_УСТРОЙСТВА">
+              <MappingFragment StoreEntitySet="ТИП_УСТРОЙСТВА">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Название" ColumnName="Название" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
