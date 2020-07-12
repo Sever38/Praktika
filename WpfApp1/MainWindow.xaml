@@ -10,7 +10,6 @@
          MinWidth="365">
     <Window.DataContext>
         <vm:PCVM/>
-
     </Window.DataContext>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -22,7 +21,7 @@
             <RowDefinition Height="52*"/>
         </Grid.RowDefinitions>
         <ScrollViewer  FontFamily="/WpfApp1;component/Fonts/#HelveticaNeueCyr" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" CanContentScroll="True" Background="Blue" Grid.ColumnSpan="2">
-            <DataGrid CanUserAddRows="True" CanUserDeleteRows="True"  AutoGenerateColumns="False" Grid.Row="0" SelectedItem="{Binding Path=Selecteditem}" ItemsSource="{Binding Path=PCs}">
+            <DataGrid CanUserAddRows="True" CanUserDeleteRows="True"  AutoGenerateColumns="False" Grid.Row="0" SelectedItem="{Binding Path=Selecteditem}" ItemsSource="{Binding Path=PCs}"  >
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Название" Binding="{Binding Path=Название}"/>
                     <DataGridComboBoxColumn  
@@ -59,13 +58,12 @@
             </DataGrid>
         </ScrollViewer>
         <StackPanel Grid.Row="1" Orientation="Horizontal" MinWidth="200" MinHeight="52" >
-            <Button x:Name="Computers"  FontFamily="/WpfApp1;component/Fonts/#HelveticaNeueCyr" Content="Компьютеры" Command= "{Binding Path=PCs}" />
+            <Button FontFamily="/WpfApp1;component/Fonts/#HelveticaNeueCyr" Content="Добавить" Command="{Binding Path=DataContext.CreateInfocommand,RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" />
             <Button Content="Программное обеспечение"  FontFamily="/WpfApp1;component/Fonts/#HelveticaNeueCyr"/>
             <Button Content="Установленное ПО"   FontFamily="/WpfApp1;component/Fonts/#HelveticaNeueCyr"/>
         </StackPanel>
-        <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right">
-            <TextBlock Text="Time is:" FontFamily="/WpfApp1;component/Fonts/#HelveticaNeueCyr"  />
+        <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right" Width="42">
+            <TextBlock Text="Time is:" FontFamily="/WpfApp1;component/Fonts/#HelveticaNeueCyr"/>
         </StackPanel>
-
     </Grid>
 </Window>
