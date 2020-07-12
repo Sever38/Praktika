@@ -16,7 +16,7 @@ namespace WpfApp1.Model
     {
         public int id { get; set; }
         public Nullable<int> Инвентарный_Номер_ПК { get; set; }
-        public Nullable<int> Наименование_Продукта { get; set; }
+        public Nullable<int> Продукт { get; set; }
         public Nullable<System.DateTime> Дата_Установки { get; set; }
     
         public virtual PC PC { get; set; }

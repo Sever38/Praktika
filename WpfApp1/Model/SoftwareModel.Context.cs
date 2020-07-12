@@ -25,12 +25,12 @@ namespace WpfApp1.Model
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<InstalledSoftware> InstalledSoftware { get; set; }
         public virtual DbSet<PC> PC { get; set; }
         public virtual DbSet<Software> Software { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<ТИП_ПО> ТИП_ПО { get; set; }
         public virtual DbSet<ТИП_РАСПРОСТРАНЕНИЯ> ТИП_РАСПРОСТРАНЕНИЯ { get; set; }
         public virtual DbSet<ТИП_УСТРОЙСТВА> ТИП_УСТРОЙСТВА { get; set; }
+        public virtual DbSet<InstalledSoftware> InstalledSoftware { get; set; }
     }
 }

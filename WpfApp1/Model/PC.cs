@@ -24,8 +24,8 @@ namespace WpfApp1.Model
         public string Название { get; set; }
         public Nullable<int> Тип_Устройства { get; set; }
     
+        public virtual ТИП_УСТРОЙСТВА ТИП_УСТРОЙСТВА1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<InstalledSoftware> InstalledSoftware { get; set; }
-        public virtual ТИП_УСТРОЙСТВА ТИП_УСТРОЙСТВА1 { get; set; }
     }
 }

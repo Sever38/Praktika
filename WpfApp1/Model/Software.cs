@@ -27,9 +27,9 @@ namespace WpfApp1.Model
         public Nullable<int> Количество_Лицензий { get; set; }
         public Nullable<int> Остаток_Лицензий { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<InstalledSoftware> InstalledSoftware { get; set; }
         public virtual ТИП_ПО ТИП_ПО1 { get; set; }
         public virtual ТИП_РАСПРОСТРАНЕНИЯ ТИП_РАСПРОСТРАНЕНИЯ1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<InstalledSoftware> InstalledSoftware { get; set; }
     }
 }

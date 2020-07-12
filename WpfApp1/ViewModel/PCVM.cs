@@ -12,8 +12,7 @@ namespace WpfApp1.ViewModel
 	class PCVM : BaseHelper
 	{
 		prktEntities db = new prktEntities();
-		ObservableCollection<PC> pCs = null;		
-		
+		ObservableCollection<PC> pCs = null;
 		
 		public ObservableCollection<PC> PCs
 		{
@@ -46,14 +45,12 @@ namespace WpfApp1.ViewModel
 					{
 						var finditem = db.PC.Find(Selecteditem.id);
 						if (finditem != null)
-						{							
+						{
 							db.Entry(finditem).State = EntityState.Deleted;
 							db.PC.Remove(finditem);
 							db.SaveChanges();
 							db.PC.Load();
 							PCs = new ObservableCollection<PC>(db.PC.Local.ToBindingList());
-							
-							
 						}
 
 					}
@@ -90,7 +87,7 @@ namespace WpfApp1.ViewModel
 			get
 			{
 				return CreateInfo ?? (CreateInfo = new RelayCommand(obj =>
-				{					
+				{
 					db.PC.Add(Selecteditem);
 					db.SaveChanges();
 				}
@@ -101,7 +98,7 @@ namespace WpfApp1.ViewModel
 		private ObservableCollection<ТИП_УСТРОЙСТВА> getust;
 		public ObservableCollection<ТИП_УСТРОЙСТВА> GetUst { get { return getust; } set { getust = value; OnPropertyChanged(nameof(GetUst)); } }
 
-		
+
 
 	}
 }

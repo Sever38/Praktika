@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,34 +10,24 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
-using WpfApp1.VIew;
-using WpfApp1.ViewModel;
 
-namespace WpfApp1
+namespace WpfApp1.VIew
 {
 	/// <summary>
-	/// Логика взаимодействия для MainWindow.xaml
+	/// Логика взаимодействия для SoftwareView.xaml
 	/// </summary>
-	public partial class MainWindow : Window
+	public partial class SoftwareView : Window
 	{
-		
-		
-		public MainWindow()
+		public SoftwareView()
 		{
 			InitializeComponent();
 		}
 
-		private void DataGrid_AddingNewItem(object sender, AddingNewItemEventArgs e)
-		{
-
-		}
-
 		private void Button_Click(object sender, RoutedEventArgs e)
 		{
-			SoftwareView soft = new SoftwareView();
-			soft.Show();
+			MainWindow main = new MainWindow();
+			main.Show();
 			this.Close();
 		}
 
