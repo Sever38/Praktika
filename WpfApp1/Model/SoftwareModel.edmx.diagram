@@ -4,19 +4,19 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="0575cf7946b94350bfa3d103f46d65b8" Name="Diagram1">
+      <Diagram DiagramId="51cd3774c725471d8af4b0abdcc5cb14" Name="Diagram1">
+        <EntityTypeShape EntityType="prktModel.InstalledSoftware" Width="1.5" PointX="5.25" PointY="1.25" IsExpanded="true" />
         <EntityTypeShape EntityType="prktModel.PC" Width="1.5" PointX="3" PointY="8.375" IsExpanded="true" />
         <EntityTypeShape EntityType="prktModel.Software" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="prktModel.sysdiagrams" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="prktModel.ТИП_ПО" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
         <EntityTypeShape EntityType="prktModel.ТИП_РАСПРОСТРАНЕНИЯ" Width="1.5" PointX="0.75" PointY="5.5" IsExpanded="true" />
         <EntityTypeShape EntityType="prktModel.ТИП_УСТРОЙСТВА" Width="1.5" PointX="0.75" PointY="8.5" IsExpanded="true" />
+        <AssociationConnector Association="prktModel.FK_InstalledSoftware_PC" ManuallyRouted="false" />
+        <AssociationConnector Association="prktModel.FK_InstalledSoftware_Software" ManuallyRouted="false" />
         <AssociationConnector Association="prktModel.FK_PC_ТИП_УСТРОЙСТВА" ManuallyRouted="false" />
         <AssociationConnector Association="prktModel.FK_Software_ТИП_ПО" ManuallyRouted="false" />
         <AssociationConnector Association="prktModel.FK_Software_ТИП_РАСПРОСТРАНЕНИЯ" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="prktModel.InstalledSoftware" Width="1.5" PointX="5.25" PointY="4.625" />
-        <AssociationConnector Association="prktModel.FK_InstalledSoftware_PC" />
-        <AssociationConnector Association="prktModel.FK_InstalledSoftware_Software" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

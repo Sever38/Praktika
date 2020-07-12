@@ -64,39 +64,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="ViewModel\Base\BaseHelper.cs" />
-    <Compile Include="ViewModel\Base\RelayCommand.cs" />
-    <Compile Include="ViewModel\InstalledSoftwareVM.cs" />
-    <Compile Include="ViewModel\PCVM.cs" />
-    <Compile Include="ViewModel\SoftVM.cs" />
-    <Compile Include="VIew\InstalledSoftwareView.xaml.cs">
-      <DependentUpon>InstalledSoftwareView.xaml</DependentUpon>
+    <Compile Include="Model\countkolvo_Result.cs">
+      <DependentUpon>SoftwareModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="VIew\SoftwareView.xaml.cs">
-      <DependentUpon>SoftwareView.xaml</DependentUpon>
-    </Compile>
-    <Page Include="MainWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Compile Include="App.xaml.cs">
-      <DependentUpon>App.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Page Include="VIew\InstalledSoftwareView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="VIew\SoftwareView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Model\InstalledSoftware.cs">
       <DependentUpon>SoftwareModel.tt</DependentUpon>
     </Compile>
@@ -133,6 +103,39 @@
     <Compile Include="Model\ТИП_УСТРОЙСТВА.cs">
       <DependentUpon>SoftwareModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\Base\BaseHelper.cs" />
+    <Compile Include="ViewModel\Base\RelayCommand.cs" />
+    <Compile Include="ViewModel\InstalledSoftwareVM.cs" />
+    <Compile Include="ViewModel\PCVM.cs" />
+    <Compile Include="ViewModel\SoftVM.cs" />
+    <Compile Include="VIew\InstalledSoftwareView.xaml.cs">
+      <DependentUpon>InstalledSoftwareView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="VIew\SoftwareView.xaml.cs">
+      <DependentUpon>SoftwareView.xaml</DependentUpon>
+    </Compile>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="VIew\InstalledSoftwareView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="VIew\SoftwareView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -150,10 +153,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="Model\SoftwareModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>SoftwareModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
     <Resource Include="Fonts\Helvetica Neue Condensed Black.ttf" />
     <Resource Include="Fonts\Helvetica Neue Condensed Bold.ttf" />
     <Resource Include="Fonts\HelveticaNeueCyr-Black.otf" />
@@ -172,6 +171,10 @@
     <Resource Include="Fonts\HelveticaNeueCyr-ThinItalic.otf" />
     <Resource Include="Fonts\HelveticaNeueCyr-UltraLight.otf" />
     <Resource Include="Fonts\HelveticaNeueCyr-UltraLightItalic.otf" />
+    <EntityDeploy Include="Model\SoftwareModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>SoftwareModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
     <None Include="Model\SoftwareModel.edmx.diagram">
       <DependentUpon>SoftwareModel.edmx</DependentUpon>
     </None>
@@ -184,12 +187,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Content Include="Model\SoftwareModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>SoftwareModel.Context.cs</LastGenOutput>
       <DependentUpon>SoftwareModel.edmx</DependentUpon>
+      <LastGenOutput>SoftwareModel.Context.cs</LastGenOutput>
     </Content>
     <Content Include="Model\SoftwareModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

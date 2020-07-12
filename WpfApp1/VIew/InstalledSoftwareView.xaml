@@ -21,29 +21,45 @@
             <RowDefinition Height="52*"/>
         </Grid.RowDefinitions>
         <ScrollViewer  FontFamily="/WpfApp1;component/Fonts/#HelveticaNeueCyr" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" CanContentScroll="True" Background="Blue" Grid.ColumnSpan="2">
-            <DataGrid CanUserAddRows="True" CanUserDeleteRows="True"  AutoGenerateColumns="False" Grid.Row="0" SelectedItem="{Binding Path=Selecteditem}" ItemsSource="{Binding Path=ISOFTs}"  >
-                
+            <DataGrid CanUserAddRows="True" CanUserDeleteRows="True"  AutoGenerateColumns="False" Grid.Row="0" SelectedItem="{Binding Path=Selecteditem}" ItemsSource="{Binding Path=ISOFTs}"  >                
                 <DataGrid.Columns>
+                    <!--<DataGridTemplateColumn Header="ПК">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <ComboBox ItemsSource="{Binding Path=DataContext.GetPc, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" DisplayMemberPath="Название" SelectedItem="{Binding Path=PC}" SelectedValue="{Binding Path=DataContext.combopc, RelativeSource={RelativeSource AncestorType={x:Type Window}}}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="ПО">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <ComboBox ItemsSource="{Binding Path=DataContext.GetS, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" DisplayMemberPath="Наименование_Продукта" SelectedItem="{Binding Path=Software}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>-->                    
                     <DataGridComboBoxColumn Header="ПК"
                                             DisplayMemberPath="Название"
-                                            SelectedValuePath="Инвентарный_Номер_ПК"
-                                            SelectedValueBinding="{Binding PC}"                                                                                        
+                                            SelectedValuePath="id"                                            
+                                            SelectedValueBinding="{Binding Path=Инвентарный_Номер_ПК}"
+                                            
                                             >
                         <DataGridComboBoxColumn.ElementStyle>
                             <Style TargetType="{x:Type ComboBox}">
-                                <Setter Property="ItemsSource" Value="{Binding Path=DataContext.GetPc, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" />
+                                <Setter  Property="ItemsSource" Value="{Binding Path=DataContext.GetPc, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" />                                
                             </Style>
+                            
                         </DataGridComboBoxColumn.ElementStyle>
+                        
                         <DataGridComboBoxColumn.EditingElementStyle>
                             <Style TargetType="{x:Type ComboBox}">
                                 <Setter Property="ItemsSource" Value="{Binding Path=DataContext.GetPc, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" />
                             </Style>
                         </DataGridComboBoxColumn.EditingElementStyle>
                     </DataGridComboBoxColumn>
-                    <DataGridComboBoxColumn  
+                    <DataGridComboBoxColumn Header="Продукт"
                                             DisplayMemberPath="Наименование_Продукта"
-                                            SelectedValuePath="Продукт"
-                                            SelectedValueBinding="{Binding Software}"                                                                                        
+                                            SelectedValuePath="id"                                            
+                                            SelectedValueBinding="{Binding Path=Продукт}"                                                                                        
                                             >
                         <DataGridComboBoxColumn.ElementStyle>
                             <Style TargetType="{x:Type ComboBox}">
@@ -56,7 +72,7 @@
                             </Style>
                         </DataGridComboBoxColumn.EditingElementStyle>
                     </DataGridComboBoxColumn>
-                    <DataGridTextColumn Header="Количество лицензий" Binding="{Binding Path=Дата_Установки}"/>                    
+                    <DataGridTextColumn Header="Количество лицензий" Binding="{Binding Path=Дата_Установки, StringFormat={}{0:dd/MM/yyyy}}"/>                    
                     <DataGridTemplateColumn>
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
@@ -77,8 +93,8 @@
         </ScrollViewer>
         <StackPanel Grid.Row="1" Orientation="Horizontal" MinWidth="200" MinHeight="52" >
             <Button FontFamily="/WpfApp1;component/Fonts/#HelveticaNeueCyr" Content="Добавить" Command="{Binding Path=DataContext.CreateInfocommand,RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" />
-            <Button Content="Вычислительная техника"  FontFamily="/WpfApp1;component/Fonts/#HelveticaNeueCyr" />
-            <Button Content="Програмное обеспечение"   FontFamily="/WpfApp1;component/Fonts/#HelveticaNeueCyr" />
+            <Button Content="Вычислительная техника"  FontFamily="/WpfApp1;component/Fonts/#HelveticaNeueCyr" Click="Button_Click" />
+            <Button Content="Програмное обеспечение"   FontFamily="/WpfApp1;component/Fonts/#HelveticaNeueCyr" Click="Button_Click_1" />
         </StackPanel>
         <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right" Width="42">
             <TextBlock Text="Time is:" FontFamily="/WpfApp1;component/Fonts/#HelveticaNeueCyr"/>

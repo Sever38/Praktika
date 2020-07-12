@@ -11,7 +11,7 @@ namespace WpfApp1.ViewModel
 {
 	class PCVM : BaseHelper
 	{
-		prktEntities db = new prktEntities();
+		prktEntities1 db = new prktEntities1();
 		ObservableCollection<PC> pCs = null;
 		
 		public ObservableCollection<PC> PCs

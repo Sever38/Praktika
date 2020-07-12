@@ -13,7 +13,7 @@ namespace WpfApp1.ViewModel
 {
 	class SoftVM : BaseHelper
 	{
-		prktEntities db = new prktEntities();
+		prktEntities1 db = new prktEntities1();
 		ObservableCollection<Software> softs = null;
 
 		public ObservableCollection<Software> SOFTs

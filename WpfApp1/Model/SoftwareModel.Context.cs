@@ -12,11 +12,13 @@ namespace WpfApp1.Model
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
-    public partial class prktEntities : DbContext
+    public partial class prktEntities1 : DbContext
     {
-        public prktEntities()
-            : base("name=prktEntities")
+        public prktEntities1()
+            : base("name=prktEntities1")
         {
         }
     
@@ -25,12 +27,34 @@ namespace WpfApp1.Model
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<InstalledSoftware> InstalledSoftware { get; set; }
         public virtual DbSet<PC> PC { get; set; }
         public virtual DbSet<Software> Software { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<ТИП_ПО> ТИП_ПО { get; set; }
         public virtual DbSet<ТИП_РАСПРОСТРАНЕНИЯ> ТИП_РАСПРОСТРАНЕНИЯ { get; set; }
         public virtual DbSet<ТИП_УСТРОЙСТВА> ТИП_УСТРОЙСТВА { get; set; }
-        public virtual DbSet<InstalledSoftware> InstalledSoftware { get; set; }
+    
+        public virtual ObjectResult<countkolvo_Result> countkolvo(Nullable<int> kolbo)
+        {
+            var kolboParameter = kolbo.HasValue ?
+                new ObjectParameter("kolbo", kolbo) :
+                new ObjectParameter("kolbo", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<countkolvo_Result>("countkolvo", kolboParameter);
+        }
+    
+        public virtual int updatekolvo(Nullable<int> kolvo, Nullable<int> idprod)
+        {
+            var kolvoParameter = kolvo.HasValue ?
+                new ObjectParameter("Kolvo", kolvo) :
+                new ObjectParameter("Kolvo", typeof(int));
+    
+            var idprodParameter = idprod.HasValue ?
+                new ObjectParameter("idprod", idprod) :
+                new ObjectParameter("idprod", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("updatekolvo", kolvoParameter, idprodParameter);
+        }
     }
 }

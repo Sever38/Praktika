@@ -56,8 +56,7 @@
                             </Style>
                         </DataGridComboBoxColumn.EditingElementStyle>
                     </DataGridComboBoxColumn>
-                    <DataGridTextColumn Header="Количество лицензий" Binding="{Binding Path=Количество_Лицензий}"/>
-                    <DataGridTextColumn Header="Остаток лицензий" Binding="{Binding Path=Остаток_Лицензий}"/>
+                    <DataGridTextColumn Header="Количество лицензий" Binding="{Binding Path=Количество_Лицензий}"/>                    
                     <DataGridTemplateColumn>
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
