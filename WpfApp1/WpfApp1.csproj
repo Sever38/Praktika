@@ -175,6 +175,7 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>SoftwareModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <None Include="master\prkt.bak" />
     <None Include="Model\SoftwareModel.edmx.diagram">
       <DependentUpon>SoftwareModel.edmx</DependentUpon>
     </None>
