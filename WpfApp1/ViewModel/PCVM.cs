@@ -9,7 +9,7 @@ using System.Data.Entity;
 
 namespace WpfApp1.ViewModel
 {
-	class PCVM : BaseHelper
+	public class PCVM : BaseHelper
 	{
 		prktEntities1 db = new prktEntities1();
 		ObservableCollection<PC> pCs = null;
@@ -23,6 +23,20 @@ namespace WpfApp1.ViewModel
 				OnPropertyChanged(nameof(PCs));
 			}
 		}
+		public bool StatusConnection()
+		{
+			db.PC.Load();
+			pCs = new ObservableCollection<PC>(db.PC.Local.ToBindingList());			
+			if (pCs!=null)
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+
+		}
 		public PCVM()
 		{
 			db.PC.Load();
@@ -35,7 +49,7 @@ namespace WpfApp1.ViewModel
 		public PC Selecteditem { get { return SelectedItem; } set { SelectedItem = value; OnPropertyChanged(nameof(Selecteditem)); } }
 
 		private RelayCommand DeleteInfo;
-		public RelayCommand DeleteInfocommand
+		private RelayCommand DeleteInfocommand
 		{
 			get
 			{
@@ -59,7 +73,7 @@ namespace WpfApp1.ViewModel
 			}
 		}
 		private RelayCommand UpdateInfo;
-		public RelayCommand UpdateInfocommand
+		private RelayCommand UpdateInfocommand
 		{
 			get
 			{
@@ -82,7 +96,7 @@ namespace WpfApp1.ViewModel
 			}
 		}
 		private RelayCommand CreateInfo;
-		public RelayCommand CreateInfocommand
+		private RelayCommand CreateInfocommand
 		{
 			get
 			{

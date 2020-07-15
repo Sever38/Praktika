@@ -22,26 +22,11 @@
         </Grid.RowDefinitions>
         <ScrollViewer  FontFamily="/WpfApp1;component/Fonts/#HelveticaNeueCyr" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" CanContentScroll="True" Background="Blue" Grid.ColumnSpan="2">
             <DataGrid CanUserAddRows="True" CanUserDeleteRows="True"  AutoGenerateColumns="False" Grid.Row="0" SelectedItem="{Binding Path=Selecteditem}" ItemsSource="{Binding Path=ISOFTs}"  >                
-                <DataGrid.Columns>
-                    <!--<DataGridTemplateColumn Header="ПК">
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <ComboBox ItemsSource="{Binding Path=DataContext.GetPc, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" DisplayMemberPath="Название" SelectedItem="{Binding Path=PC}" SelectedValue="{Binding Path=DataContext.combopc, RelativeSource={RelativeSource AncestorType={x:Type Window}}}"/>
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-                    <DataGridTemplateColumn Header="ПО">
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <ComboBox ItemsSource="{Binding Path=DataContext.GetS, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" DisplayMemberPath="Наименование_Продукта" SelectedItem="{Binding Path=Software}"/>
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>-->                    
+                <DataGrid.Columns>                                  
                     <DataGridComboBoxColumn Header="ПК"
                                             DisplayMemberPath="Название"
                                             SelectedValuePath="id"                                            
-                                            SelectedValueBinding="{Binding Path=Инвентарный_Номер_ПК}"
-                                            
+                                            SelectedValueBinding="{Binding Path=Инвентарный_Номер_ПК}"                                            
                                             >
                         <DataGridComboBoxColumn.ElementStyle>
                             <Style TargetType="{x:Type ComboBox}">
