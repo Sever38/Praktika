@@ -81,9 +81,7 @@
             <Button Content="Вычислительная техника"  FontFamily="/WpfApp1;component/Fonts/#HelveticaNeueCyr" Click="Button_Click" />
             <Button Content="Програмное обеспечение"   FontFamily="/WpfApp1;component/Fonts/#HelveticaNeueCyr" Click="Button_Click_1" />
         </StackPanel>
-        <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right" Width="42">
-            <TextBlock Text="Time is:" FontFamily="/WpfApp1;component/Fonts/#HelveticaNeueCyr"/>
-        </StackPanel>
+        <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right" Width="42"/>
     </Grid>
 </Window>
 
