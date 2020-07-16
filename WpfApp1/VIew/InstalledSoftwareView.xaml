@@ -57,7 +57,7 @@
                             </Style>
                         </DataGridComboBoxColumn.EditingElementStyle>
                     </DataGridComboBoxColumn>
-                    <DataGridTextColumn Header="Количество лицензий" Binding="{Binding Path=Дата_Установки, StringFormat={}{0:dd/MM/yyyy}}"/>                    
+                    <DataGridTextColumn Header="Дата Установки" Binding="{Binding Path=Дата_Установки, StringFormat={}{0:dd/MM/yyyy}}"/>                    
                     <DataGridTemplateColumn>
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
